@@ -30,7 +30,7 @@ public class TestMvcConfig {
 
     @BeforeEach
     public void SampleTest() {
-        /** 한글 깨짐 방지 **/
+        /** 한글 깨짐 방지  **/
         mockMvc = MockMvcBuilders.webAppContextSetup(ctx)
                 .addFilter(new CharacterEncodingFilter("UTF-8", true))
                 .alwaysDo(print())
