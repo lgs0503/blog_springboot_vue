@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.blog.api.sample.mapper.SampleMapper">
+
+    <select id="getSampleList" resultType="com.web.blog.api.sample.vo.Sample">
+        SELECT
+            COL1, COL2
+        FROM sample
+    </select>
+
+    <insert id="insertSample" parameterType="com.web.blog.api.sample.vo.Sample">
+        INSERT INTO sample
+        VALUES (#{col1}, #{col2})
+    </insert>
+
+    <update id="updateSample" parameterType="com.web.blog.api.sample.vo.Sample">
+        UPDATE sample
+        SET COL2 = #{col2}
+        WHERE COL1 = #{col1}
+    </update>
+
+    <delete id="deleteSample" parameterType="String">
+        DELETE FROM sample
+        WHERE COL1 IN
+        <foreach collection="list" item="col1" open="(" close=")" separator=",">
+            #{col1}
+        </foreach>
+    </delete>
+</mapper>
