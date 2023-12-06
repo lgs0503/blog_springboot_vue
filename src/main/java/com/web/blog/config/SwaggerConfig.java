@@ -1,26 +1,27 @@
 package com.web.blog.config;
 
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Info;
-import org.springdoc.core.GroupedOpenApi;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+import lombok.RequiredArgsConstructor;
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+@OpenAPIDefinition(
+        info = @Info(title = "blog",
+                description = "blog api 명세서",
+                version = "v1"))
+@RequiredArgsConstructor
 @Configuration
 public class SwaggerConfig {
 
     @Bean
-    public GroupedOpenApi publicApi() {
-        return GroupedOpenApi.builder()
-                .group("v1-definition")
-                .pathsToMatch("/api/**")
-                .build();
-    }
+    public GroupedOpenApi chatOpenApi() {
+        String[] paths = {"/api/**"};
 
-    @Bean
-    public OpenAPI springShopOpenAPI() {
-        return new OpenAPI().info(new Info().title("Blog API")
-                .description("Blog Project API 명세서 입니다.")
-                .version("v0.0.1"));
+        return GroupedOpenApi.builder()
+                .group("blog API v1")
+                .pathsToMatch(paths)
+                .build();
     }
 }

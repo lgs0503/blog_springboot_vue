@@ -18,7 +18,3 @@ spring:
       maxFileSize: 10MB
       maxRequestSize: 20MB
 
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    use-root-path: true
