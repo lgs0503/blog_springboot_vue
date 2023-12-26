@@ -84,7 +84,7 @@ public class TestResolver implements HandlerMethodArgumentResolver {
         if(false) {
             throw new Exception("컬럼체크에러");
         } else {
-            return new ObjectMapper().convertValue(map, Sample.class);
+            return new ObjectMapper().convertValue(map, parameter.getParameterType());
         }
     }
 }
