@@ -1,10 +1,12 @@
 package com.web.blog.api.sample.controller;
 
+import com.web.blog.annotation.TestParam;
 import com.web.blog.api.sample.service.SampleService;
 import com.web.blog.api.sample.vo.Sample;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,5 +49,11 @@ public class SampleController {
     @DeleteMapping
     public ResponseEntity deleteSample(@RequestBody List<String> deleteList) {
         return new ResponseEntity<>(sampleService.deleteSample(deleteList), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/testParam")
+    public ResponseEntity testParam(@TestParam(colName = {"column", "orderaBy"}) Sample sample) {
+        return new ResponseEntity<>(sample, HttpStatus.OK);
     }
 }
